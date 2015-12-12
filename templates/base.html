@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="robots" content="index, follow" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}" />
+        <title>Land of Fire</title>
+    </head>
+    <body>
+        <header>
+            <hgroup class="title">
+                <h1>Land of Fire</h1>
+                <h2>Free and Open Source Fantasy/Steampunk MMORPG</h2>
+            </hgroup>
+            <nav>
+            {%- for page in pages %}
+                <a href="{% if page.external == True %}{{ page.url }}{% else %}{{ url_for(page.ref) }}{% endif %}" 
+                        {%- if page.ref == current %} class="current"{% endif %}>
+                    {{- page.title -}}
+                </a>
+            {%- endfor %}
+            </nav>
+        </header>
+        
+        <div class="columns">
+        
+            <main>
+            {% block main %}
+            {% endblock %}
+            </main>
+            
+            {%- block sidebar %}
+            <div class="news">
+                <p class="quote">We have had some recent updates, and have decided to move to a commercial host! 
+                This will make some development run smoother and will help uptime, speed, and stability. 
+                We thank you all for sticking with us and will keep you updated during the move!</p>
+                <p class="author">The LoF Dev Team</p>
+            </div>
+
+            <div class="online">
+                <h3>Who's Online ({{online.count}} total):</h3>
+                {%- if online.devs %}
+                <p>{{ online.devs|count }} {{ "Dev"|plural(online.devs|count) }}</p>
+                <ul>
+                {%- for player in online.devs %}
+                    <li>{{ player }}</li>
+                {%- endfor %}
+                </ul>
+                {%- endif %}
+                
+                {%- if online.gms %}
+                <p>{{ online.gms|count }} {{ "GM"|plural(online.gms|count) }}</p>
+                <ul>
+                {%- for player in online.gms %}
+                    <li>{{ player }}</li>
+                {%- endfor %}
+                </ul>
+                {%- endif %}
+                
+                {%- if online.players %}
+                <p>{{ online.players|count }} {{ "Player"|plural(online.players|count) }}</p>
+                <ul>
+                {%- for player in online.players %}
+                    <li>{{ player }}</li>
+                {%- endfor %}
+                </ul>
+                {%- endif %}
+                
+                {%- if online.bots %}
+                <p>{{ online.bots|count }} {{ "LOFBot"|plural(online.bots|count) }}</p>
+                <ul>
+                {%- for player in online.bots %}
+                    <li>{{ player }}</li>
+                {%- endfor %}
+                </ul>
+                {%- endif %}
+            </div>
+            {%- endblock %}
+        </div>
+        <footer>
+        </footer>
+    </body>
+</html>

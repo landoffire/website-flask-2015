@@ -1,0 +1,150 @@
+/* Reset */
+
+html, body, hgroup, h1, h2, h3, p, li, nav, header, ul, hr, footer, aside, iframe {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    font-weight: normal;
+    font-family: sans;
+}
+
+ul {
+    list-style: disc;
+}
+
+/* Styles */
+
+html {
+    background-image: url("steampunk1.jpg");
+    background-size: cover;
+    background-position: 0 200px;
+    background-attachment: fixed;
+}
+
+.title {
+    box-sizing: border-box;
+    padding-top: 24px;
+    padding-left: 120px;
+    min-height: 128px;
+    
+    background: url("icon.png") no-repeat;
+}
+
+h1 {
+    font-size: 2.8em;
+    line-height: 1em;
+}
+h2 {
+    font-size: 1.3em;
+}
+
+.title h1, .title h2 {
+    font-family: "DejaVu Serif", "Noto Serif", serif;
+}
+
+nav {
+    padding-left: 20px;
+    
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #541014;
+}
+
+nav a  {
+    padding: 5px 5px 6px 5px;
+    
+    background-color: rgba(102, 20, 24, .2);
+    
+    text-decoration: none;
+    color: #111;
+    font: 1.2em Ubuntu, helvetica, sans-serif;
+    
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: #54181B;
+    
+    display: inline-block;
+}
+nav a.current, nav a:hover {
+    background-color: #661418;
+    color: #fff;
+}
+
+.columns {
+    display: flex;
+    flex-flow: row wrap;
+    
+    background-color: #fff;
+}
+
+main {
+    flex: 10 10;
+    order: 1;
+    
+    padding: 8px;
+    
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #54181B;
+}
+
+.columns a:link, .columns a:visited {
+    color: #661418;
+}
+
+.columns a:hover {
+    color: #145466;
+}
+
+.columns a[href*="manaplus.org"] {
+    margin-left: 2px;
+    padding-left: 1.5em;
+    
+    background: url("manaplus.png") no-repeat;
+    background-size: contain;
+}
+
+.columns a[href*="themanaworld.org"] {
+    margin-left: 2px;
+    padding-left: 1.5em;
+    
+    background: url("tmw.png") no-repeat;
+    background-size: contain;
+}
+
+.news {
+    flex: 5 5;
+    order: 0;
+    
+    padding: 8px;
+}
+
+.quote {
+    text-indent: 20px;
+}
+
+.author:before {
+    content: "— "
+}
+.author {
+    margin-top: .5em;
+    text-indent: 20px;
+}
+
+.online {
+    flex: 4 4;
+    order: 2;
+    
+    padding: 8px;
+}
+
+.online ul {
+    list-style: none;
+    text-indent: 2em;
+}
+
+footer {
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #54181B;
+}
