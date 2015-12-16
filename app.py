@@ -13,8 +13,10 @@ def plural(s, count=None):
 
 
 def online():
+    # Production code
     #with open('/var/www/online.txt') as fl:
     #    raw_players = fl.read().splitlines()[4:-2]
+    # Testing code
     raw_players = ['KeeKee (GM)', 'Pihro (GM)      ', 'LOFBot   ', 'Pyndragon', 'Ozthokk']
     
     count = len(raw_players)
@@ -45,8 +47,10 @@ def online():
 
 
 def gallery():
-    return []
-    return os.listdir('/var/www/static/gallery')
+    # Production code
+    #return os.listdir('/var/www/static/gallery')
+    # Testing code
+    return ['LOF_banner_still_licensed_web_4.png']
 
 
 class Nav(object):
