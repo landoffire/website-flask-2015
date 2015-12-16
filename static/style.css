@@ -105,8 +105,8 @@ main {
 }
 
 .columns a[href*="themanaworld.org"] {
-    margin-left: 2px;
-    padding-left: 1.5em;
+    margin-left: 1.9px;
+    padding-left: 1.45em;
     
     background: url("tmw.png") no-repeat;
     background-size: contain;
