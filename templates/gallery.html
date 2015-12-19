@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 
 {% block main %}
-{%- for image in gallery %}
-    <img src="{{ url_for('static', filename='gallery') }}/{{ image }}" class="gallery-img">
-{% endfor -%}
+<main class="gallery">
+    {%- for image in gallery %}
+    <section>
+        <img src="{{ url_for('static', filename='gallery') }}/{{ image }}" class="gallery-img">
+    </section>
+    {% endfor -%}
+</main>
 {% endblock %}
 
 {%- block sidebar %}{% endblock -%}

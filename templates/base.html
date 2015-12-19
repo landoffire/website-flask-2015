@@ -15,25 +15,23 @@
             </hgroup>
             <nav>
             {%- for page in pages %}
-                <a href="{% if page.external == True %}{{ page.url }}{% else %}{{ url_for(page.ref) }}{% endif %}" 
+                <a href="{% if page.external == True %}{{ page.url }}{% else %}{{ url_for(page.ref) }}{% endif %}"
                         {%- if page.ref == current %} class="current"{% endif %}>
                     {{- page.title -}}
                 </a>
             {%- endfor %}
             </nav>
         </header>
-        
+
         <div class="columns">
-        
-            <main>
+
             {% block main %}
             {% endblock %}
-            </main>
-            
+
             {%- block sidebar %}
             <div class="news">
-                <p class="quote">We have had some recent updates, and have decided to move to a commercial host! 
-                This will make some development run smoother and will help uptime, speed, and stability. 
+                <p class="quote">We have had some recent updates, and have decided to move to a commercial host!
+                This will make some development run smoother and will help uptime, speed, and stability.
                 We thank you all for sticking with us and will keep you updated during the move!</p>
                 <p class="author">The LoF Dev Team</p>
             </div>
@@ -48,7 +46,7 @@
                 {%- endfor %}
                 </ul>
                 {%- endif %}
-                
+
                 {%- if online.gms %}
                 <p>{{ online.gms|count }} {{ "GM"|plural(online.gms|count) }}</p>
                 <ul>
@@ -57,7 +55,7 @@
                 {%- endfor %}
                 </ul>
                 {%- endif %}
-                
+
                 {%- if online.players %}
                 <p>{{ online.players|count }} {{ "Player"|plural(online.players|count) }}</p>
                 <ul>
@@ -66,7 +64,7 @@
                 {%- endfor %}
                 </ul>
                 {%- endif %}
-                
+
                 {%- if online.bots %}
                 <p>{{ online.bots|count }} {{ "LOFBot"|plural(online.bots|count) }}</p>
                 <ul>

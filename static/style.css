@@ -26,7 +26,7 @@ html {
     padding-top: 24px;
     padding-left: 120px;
     min-height: 128px;
-    
+
     background: url("icon.png") no-repeat;
 }
 
@@ -44,7 +44,7 @@ h2 {
 
 nav {
     padding-left: 20px;
-    
+
     border-width: 0 0 1px 0;
     border-style: solid;
     border-color: #541014;
@@ -52,17 +52,17 @@ nav {
 
 nav a  {
     padding: 5px 5px 6px 5px;
-    
+
     background-color: rgba(102, 20, 24, .2);
-    
+
     text-decoration: none;
     color: #111;
     font: 1.2em Ubuntu, helvetica, sans-serif;
-    
+
     border-width: 1px 1px 0 1px;
     border-style: solid;
     border-color: #54181B;
-    
+
     display: inline-block;
 }
 nav a.current, nav a:hover {
@@ -73,16 +73,16 @@ nav a.current, nav a:hover {
 .columns {
     display: flex;
     flex-flow: row wrap;
-    
+
     background-color: #fff;
 }
 
 main {
     flex: 10 10;
     order: 1;
-    
+
     padding: 8px;
-    
+
     border-width: 0 1px;
     border-style: solid;
     border-color: #54181B;
@@ -99,7 +99,7 @@ main {
 .columns a[href*="manaplus.org"] {
     margin-left: 2px;
     padding-left: 1.5em;
-    
+
     background: url("manaplus.png") no-repeat;
     background-size: contain;
 }
@@ -107,15 +107,24 @@ main {
 .columns a[href*="themanaworld.org"] {
     margin-left: 1.9px;
     padding-left: 1.45em;
-    
+
     background: url("tmw.png") no-repeat;
     background-size: contain;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery-img {
 }
 
 .news {
     flex: 5 5;
     order: 0;
-    
+
     padding: 8px;
 }
 
@@ -134,7 +143,7 @@ main {
 .online {
     flex: 4 4;
     order: 2;
-    
+
     padding: 8px;
 }
 
