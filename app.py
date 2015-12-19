@@ -29,8 +29,8 @@ def online():
     devs = []
     bots = []
     players = []
-    
-    for player in raw_players:
+
+    for player in sorted(raw_players):
         player = player.rstrip()
         gm = False
         if player.endswith('(GM)'):
