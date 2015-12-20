@@ -30,10 +30,10 @@
 
             {%- block sidebar %}
             <div class="news">
+                <h2>Game News</h2>
                 {%- for section in news %}
-                {%- if section[0] == 'title' %}
-                    <h2>{{ section[1] }}</h2>
-                {%- elif section[0] == 'normal' %}
+                {# We intentionally do not display title elements! #}
+                {%- if section[0] == 'normal' %}
                     <p class="quote">{{ section[1] }}</p>
                 {%- elif section[0] == 'author' %}
                     <p class="author">{{ section[1] }}</p>
