@@ -37,7 +37,11 @@
             </div>
 
             <div class="online">
-                <h3>Who's Online ({{online.count}} total):</h3>
+                {%- if online.count %}
+                <h2>Who's Online ({{online.count}} total):</h2>
+                {%- else %}
+                <h2>No one is online.</h2>
+                {%- endif %}
                 {%- if online.devs %}
                 <p>{{ online.devs|count }} {{ "Dev"|plural(online.devs|count) }}</p>
                 <ul>
