@@ -88,15 +88,15 @@ main {
     border-color: #54181B;
 }
 
-.columns a:link, .columns a:visited {
+main a:link, main a:visited {
     color: #661418;
 }
 
-.columns a:hover {
+main a:hover {
     color: #145466;
 }
 
-.columns a[href*="manaplus.org"] {
+main a[href*="manaplus.org"] {
     margin-left: 2px;
     padding-left: 1.5em;
 
@@ -104,7 +104,7 @@ main {
     background-size: contain;
 }
 
-.columns a[href*="themanaworld.org"] {
+main a[href*="themanaworld.org"] {
     margin-left: 1.9px;
     padding-left: 1.45em;
 
