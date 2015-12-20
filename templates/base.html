@@ -30,10 +30,22 @@
 
             {%- block sidebar %}
             <div class="news">
-                <p class="quote">We have had some recent updates, and have decided to move to a commercial host!
-                This will make some development run smoother and will help uptime, speed, and stability.
-                We thank you all for sticking with us and will keep you updated during the move!</p>
-                <p class="author">The LoF Dev Team</p>
+                {%- for section in news %}
+                {%- if section[0] == 'title' %}
+                    <h2>{{ section[1] }}</h2>
+                {%- elif section[0] == 'normal' %}
+                    <p class="quote">{{ section[1] }}</p>
+                {%- elif section[0] == 'author' %}
+                    <p class="author">{{ section[1] }}</p>
+                {%- elif section[0] == 'list' %}
+                <h3>{{ section[1] }}</h3>
+                <ul>
+                    {%- for entry in section[2] %}
+                    <li>{{ entry }}</li>
+                    {%- endfor %}
+                </ul>
+                {%- endif %}
+                {%- endfor %}
             </div>
 
             <div class="online">

@@ -6,6 +6,11 @@ from flask import Flask, render_template
 
 DEBUG = '--debug' in sys.argv
 
+F_NORMAL = '0'
+F_TITLE = '1'
+F_AUTHOR = '3'
+F_LIST = '9'
+
 
 app = Flask(__name__)
 
@@ -21,7 +26,7 @@ def online():
         raw_players = ['KeeKee (GM)', 'Pihro (GM)      ', 'LOFBot   ', 'Pyndragon', 'Ozthokk']
     else:
         with open('/var/www/online.txt') as fl:
-            raw_players = fl.read().splitlines()[4:-2]
+            raw_players = unicode(fl.read(), 'utf-8').splitlines()[4:-2]
 
     count = len(raw_players)
 
@@ -50,6 +55,34 @@ def online():
     return dict(count=count, gms=gms, players=players, bots=bots, devs=devs)
 
 
+def news():
+    with open('news.txt' if DEBUG else '/var/www/updates/news.txt') as fl:
+        paragraphs = unicode(fl.read(), 'utf-8').split('\n\n')
+
+    output = []
+    lines_remaining = 25
+    for p in paragraphs:
+        if lines_remaining <= 0:
+            break
+
+        lines = [(L[2], L[4:]) for L in p.splitlines(True)]
+        lines_remaining -= len(lines)
+
+        ident = lines[0][0]
+        if ident == F_LIST:
+            parsed = ['list', lines[0][1], [L[1][2:] for L in lines[1:]]]
+        elif ident == F_AUTHOR and lines[0][1].startswith(u'\u2014'):
+            # Strip off leading em-dash and whitespace
+            parsed = ['author', lines[0][1][1:].rstrip()]
+        else:
+            name = {F_NORMAL: 'normal', F_TITLE: 'title', F_AUTHOR: 'author'}.get(ident, 'normal')
+            parsed = [name, '\n'.join(L[1] for L in lines)]
+
+        output.append(parsed)
+
+    return output
+
+
 def gallery():
     if DEBUG:
         return ['LOF_banner_still_licensed_web_4.png']
@@ -71,11 +104,14 @@ class Nav(object):
 
 def add_simple(*args, **kw):
     need_online = kw.pop('online', True)
+    need_news = kw.pop('news', True)
     need_gallery = kw.pop('gallery', False)
     nav = Nav(*args, **kw)
 
     def func(ref=nav.ref, pages=nav.registry):
         kw = {'current': ref, 'pages': pages}
+        if need_news:
+            kw['news'] = news()
         if need_online:
             kw['online'] = online()
         if need_gallery:
@@ -89,7 +125,7 @@ def add_simple(*args, **kw):
 add_simple('Home', 'index', '/')
 Nav('Forums', url='http://forums.landoffire.org', external=True)
 Nav('Wiki', url='http://wiki.landoffire.org', external=True)
-add_simple('Gallery', online=False, gallery=True)
+add_simple('Gallery', online=False, news=False, gallery=True)
 add_simple('IRC')
 add_simple('Project')
 add_simple('Team')
