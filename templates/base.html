@@ -29,7 +29,7 @@
             {% endblock %}
 
             {%- block sidebar %}
-            <div class="news">
+            <div class="news sidebar">
                 <h2>Game News</h2>
                 {%- for section in news %}
                 {# We intentionally do not display title elements! #}
@@ -48,7 +48,7 @@
                 {%- endfor %}
             </div>
 
-            <div class="online">
+            <div class="online sidebar">
                 {%- if online.count %}
                 <h2>Who's Online ({{online.count}} total):</h2>
                 {%- else %}

@@ -121,11 +121,13 @@ main a[href*="themanaworld.org"] {
 .gallery-img {
 }
 
+.sidebar {
+    padding: 8px;
+}
+
 .news {
     flex: 5 5;
     order: 0;
-
-    padding: 8px;
 }
 
 .news h3 {
@@ -151,8 +153,6 @@ main a[href*="themanaworld.org"] {
 .online {
     flex: 4 4;
     order: 2;
-
-    padding: 8px;
 }
 
 .online ul {
@@ -189,7 +189,7 @@ footer {
         order: 2;
     }
 
-    .irc .news, .irc .online {
+    .irc .sidebar {
         display: none;
     }
 }
