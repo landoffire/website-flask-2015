@@ -116,7 +116,7 @@ main a[href*="themanaworld.org"] {
     background-size: contain;
 }
 
-.gallery {
+.gallery main {
     display: flex;
     flex-direction: column;
     align-items: center;
