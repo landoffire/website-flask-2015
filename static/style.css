@@ -8,10 +8,6 @@ html, body, hgroup, h1, h2, h3, p, li, nav, header, ul, hr, footer, aside, ifram
     font-family: sans;
 }
 
-ul {
-    list-style: disc;
-}
-
 /* Styles */
 
 html {
@@ -61,7 +57,7 @@ nav a  {
 
     border-width: 1px 1px 0 1px;
     border-style: solid;
-    border-color: #54181B;
+    border-color: #54181b;
 
     display: inline-block;
 }
@@ -89,7 +85,12 @@ main {
 
     border-width: 0 1px;
     border-style: solid;
-    border-color: #54181B;
+    border-color: #54181b;
+}
+
+main h3 {
+    margin-top: 15px;
+    font-weight: bold;
 }
 
 main a:link, main a:visited {
@@ -116,6 +117,11 @@ main a[href*="themanaworld.org"] {
     background-size: contain;
 }
 
+ul {
+    list-style: disc;
+    margin-left: 2em;
+}
+
 .gallery main {
     display: flex;
     flex-direction: column;
@@ -138,10 +144,6 @@ main a[href*="themanaworld.org"] {
     margin-top: .5em;
 }
 
-.news li {
-    margin-left: 20px;
-}
-
 .quote {
     text-indent: 20px;
 }
@@ -161,13 +163,12 @@ main a[href*="themanaworld.org"] {
 
 .online ul {
     list-style: none;
-    text-indent: 2em;
 }
 
 footer {
     border-width: 1px 0 0 0;
     border-style: solid;
-    border-color: #54181B;
+    border-color: #54181b;
 }
 
 @media (max-width: 800px) {
@@ -186,7 +187,7 @@ footer {
 
         border-width: 1px 0;
         border-style: solid;
-        border-color: #54181B;
+        border-color: #54181b;
     }
 
     .online {
