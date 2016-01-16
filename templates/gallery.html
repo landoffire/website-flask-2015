@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 
 {% block main %}
-<main>
     {%- for image in gallery %}
     <section>
         <img src="{{ url_for('static', filename='gallery') }}/{{ image }}" class="gallery-img">
     </section>
     {% endfor -%}
-</main>
 {% endblock %}
 
 {%- block sidebar %}{% endblock -%}
