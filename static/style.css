@@ -46,7 +46,7 @@ nav {
     border-color: #541014;
 }
 
-nav a  {
+nav a {
     padding: 5px 5px 6px 5px;
 
     background-color: rgba(102, 20, 24, .2);
@@ -191,6 +191,10 @@ footer {
 }
 
 @media screen and (max-width: 70em) {
+    nav a {
+        font-size: 2em;
+    }
+
     .columns {
         flex-direction: column;
     }
@@ -199,6 +203,11 @@ footer {
         order: 0;
 
         border-width: 0;
+    }
+
+    main a[href*="manaplus.org"], main a[href*="manaplus.org"] {
+        padding-left: 0;
+        background: none;
     }
 
     .news {
