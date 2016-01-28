@@ -190,7 +190,7 @@ footer {
     border-color: #54181b;
 }
 
-@media (max-width: 50em) {
+@media screen and (max-width: 70em) {
     .columns {
         flex-direction: column;
     }
