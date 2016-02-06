@@ -116,8 +116,8 @@ def add_simple(*args, **kw):
 
 
 add_simple('Home', 'index', '/')
-Nav('Forum', url='http://forum.landoffire.org', external=True)
-Nav('Wiki', url='http://wiki.landoffire.org', external=True)
+Nav('Forum', url=config.FORUM_URL, external=True)
+Nav('Wiki', url=config.WIKI_URL, external=True)
 add_simple('Gallery', online=False, news=False, gallery=True)
 add_simple('IRC')
 add_simple('Project')
