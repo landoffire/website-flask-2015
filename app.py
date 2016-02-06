@@ -1,15 +1,8 @@
 import os
-import sys
 
 from flask import Flask, render_template
 
-
-DEBUG = '--debug' in sys.argv
-
-F_NORMAL = '0'
-F_TITLE = '1'
-F_AUTHOR = '3'
-F_LIST = '9'
+import config_bootstrap as config
 
 
 app = Flask(__name__)
@@ -22,10 +15,10 @@ def plural(s, count=None):
 
 
 def online():
-    if DEBUG:
+    if config.DEBUG:
         raw_players = ['KeeKee (GM)', 'Pihro (GM)      ', 'LOFBot   ', 'Pyndragon', 'Ozthokk']
     else:
-        with open('/var/www/online.txt') as fl:
+        with open(config.ONLINE_LIST_PATH) as fl:
             raw_players = unicode(fl.read(), 'utf-8').splitlines()[4:-2]
 
     count = len(raw_players)
@@ -56,7 +49,7 @@ def online():
 
 
 def news():
-    with open('news.txt' if DEBUG else '/var/www/updates/news.txt') as fl:
+    with open('news.txt' if config.DEBUG else config.NEWS_PATH) as fl:
         paragraphs = unicode(fl.read(), 'utf-8').split('\n\n')
 
     output = []
@@ -69,13 +62,13 @@ def news():
         lines_remaining -= len(lines)
 
         ident = lines[0][0]
-        if ident == F_LIST:
+        if ident == config.F_LIST:
             parsed = ['list', lines[0][1], [L[1][2:] for L in lines[1:]]]
-        elif ident == F_AUTHOR and lines[0][1].startswith(u'\u2014'):
+        elif ident == config.F_AUTHOR and lines[0][1].startswith(u'\u2014'):
             # Strip off leading em-dash and whitespace
             parsed = ['author', lines[0][1][1:].rstrip()]
         else:
-            name = {F_NORMAL: 'normal', F_TITLE: 'title', F_AUTHOR: 'author'}.get(ident, 'normal')
+            name = {config.F_NORMAL: 'normal', config.F_TITLE: 'title', config.F_AUTHOR: 'author'}.get(ident, 'normal')
             parsed = [name, '\n'.join(L[1] for L in lines)]
 
         output.append(parsed)
@@ -84,10 +77,10 @@ def news():
 
 
 def gallery():
-    if DEBUG:
+    if config.DEBUG:
         return ['LOF_banner_still_licensed_web_4.png']
     else:
-        return os.listdir('/var/www/static/gallery')
+        return os.listdir(config.GALLERY_DIR)
 
 
 class Nav(object):
@@ -133,4 +126,4 @@ add_simple('Donate')
 
 
 if __name__ == '__main__':
-    app.run(debug=DEBUG)
+    app.run(debug=config.DEBUG)
