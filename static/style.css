@@ -136,6 +136,10 @@ main a.dark-button:hover {
     background: #661418;
 }
 
+main p {
+    text-indent: 20px;
+}
+
 ul {
     list-style: disc;
     margin-left: 2em;
@@ -191,6 +195,14 @@ footer {
 }
 
 @media screen and (max-width: 70em) {
+    h1 {
+        font-size: 3.5em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
     nav a {
         font-size: 2em;
     }
@@ -222,7 +234,15 @@ footer {
         order: 2;
     }
 
+    ul {
+        margin-left: 3em;
+    }
+
     .irc .sidebar {
         display: none;
+    }
+
+    .sidebar h3 {
+        margin-top: 2em;
     }
 }
