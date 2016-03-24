@@ -13,7 +13,6 @@ html, body, hgroup, h1, h2, h3, p, li, nav, header, ul, hr, footer, aside, ifram
 html {
     background-image: url("steampunk1.jpg");
     background-size: cover;
-    background-position: 0 200px;
     background-attachment: fixed;
 }
 
@@ -70,7 +69,7 @@ nav a.current, nav a:hover {
     display: flex;
     flex-flow: row wrap;
 
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .columns h2 {
