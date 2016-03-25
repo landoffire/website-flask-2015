@@ -1,4 +1,4 @@
 #! /bin/sh
 
 cd static/gallery
-mogrify -resize 500x500 -path thumbs *.*
+mogrify -resize 400x400 -path thumbs *.*
