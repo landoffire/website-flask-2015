@@ -153,7 +153,9 @@ ul {
 }
 
 .gallery-img {
-    max-width: 500px;
+    max-width: 100%;
+
+    border: 1px solid #54181b;
 }
 
 .sidebar {
@@ -246,9 +248,5 @@ footer {
 
     .sidebar h3 {
         margin-top: 2em;
-    }
-
-    .gallery-img {
-        max-width: 100%;
     }
 }

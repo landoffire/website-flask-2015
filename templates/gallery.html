@@ -1,11 +1,21 @@
 {% extends "base.html" %}
 
 {% block main %}
-    {%- for image in gallery %}
-    <section>
-        <img src="{{ url_for('static', filename='gallery') }}/{{ image }}" class="gallery-img">
-    </section>
-    {% endfor -%}
+    {%- if gallery is string %}
+        <section>
+            <a href="{{ url_for('gallery') }}">
+                <img src="{{ url_for('static', filename='gallery') }}/{{ gallery }}" class="gallery-img">
+            </a>
+        </section>
+    {%- else %}
+        {%- for image in gallery %}
+        <section>
+            <a href="{{ url_for('gallery_closeup', image=image) }}">
+                <img src="{{ url_for('static', filename='gallery/thumbs') }}/{{ image }}" class="gallery-img">
+            </a>
+        </section>
+        {% endfor -%}
+    {%- endif %}
 {% endblock %}
 
 {%- block sidebar %}{% endblock -%}
