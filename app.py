@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 
 import config_bootstrap as config
 
@@ -12,6 +12,7 @@ app = Flask(__name__)
 @app.route('/github/webhook/2d57d74edc833bc67cdfe25d7ba5fc43', methods=['POST'])
 def webhook():
     subprocess.call(['git', 'pull'])
+    return Response(200)
 
 
 @app.template_filter('plural')
