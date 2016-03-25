@@ -87,7 +87,7 @@ def gallery():
     if config.DEBUG:
         return ['LOF_banner_still_licensed_web_4.png', 'screenshot-2016.03.23-tulimshar.png']
     else:
-        return [img for img in os.listdir(config.GALLERY_DIR) if os.path.isfile(img)]
+        return [img for img in os.listdir(config.GALLERY_DIR) if os.path.isfile(os.path.join(config.GALLERY_DIR, img))]
 
 
 @app.route('/gallery/<image>')
