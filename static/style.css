@@ -146,11 +146,14 @@ ul {
 
 .gallery main {
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-around;
     align-items: center;
 }
 
 .gallery-img {
+    max-width: 400px;
 }
 
 .sidebar {
