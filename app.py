@@ -1,7 +1,9 @@
+import hashlib
+import hmac
 import os
 import subprocess
 
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, request, Response
 
 import config_bootstrap as config
 
@@ -11,6 +13,12 @@ app = Flask(__name__)
 
 @app.route('/github/webhook/2d57d74edc833bc67cdfe25d7ba5fc43', methods=['POST'])
 def webhook():
+    data = request.data
+    expected = request.headers['X-Hub-Signature']
+    received = hmac.HMAC(config.WEBHOOK_TOKEN, data, hashlib.sha1).hexdigest()
+    if received != expected:
+        return Response(status=404)
+
     subprocess.call(['git', 'pull'])
     return Response(status=200)
 
