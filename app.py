@@ -21,7 +21,7 @@ def webhook():
     expected = request.headers['X-Hub-Signature']
     received = hmac.HMAC(config.WEBHOOK_TOKEN, data, hashlib.sha1).hexdigest()
     if received != expected:
-        return Response(status=404)
+        return Response(status=403)
 
     subprocess.call(['git', 'pull'])
     return Response(status=200)
