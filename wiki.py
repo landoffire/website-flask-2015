@@ -52,6 +52,9 @@ def read_wiki_page(path):
 
         lines = ['<h1>{}</h1>'.format(fn2title(path) or 'Home')]
         for f in files:
+            if f.startswith('.'):
+                continue
+
             f = os.path.splitext(f)[0]
 
             wiki_path = '/'.join([path, f]) if path else f
