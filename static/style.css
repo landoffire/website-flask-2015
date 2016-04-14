@@ -153,14 +153,16 @@ ul {
     margin-left: 2em;
 }
 
+.gallery main, .wiki_wiki main {
+    border-width: 0;
+}
+
 .gallery main {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-content: space-around;
     align-items: center;
-
-    border-width: 0;
 }
 
 .gallery-img {

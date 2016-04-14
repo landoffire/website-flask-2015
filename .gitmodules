@@ -1,0 +1,3 @@
+[submodule "wiki_files"]
+	path = wiki_files
+	url = ../wiki.git

@@ -6,9 +6,13 @@ import subprocess
 from flask import Flask, render_template, request, Response
 
 import config_bootstrap as config
+from nav import Nav
+from wiki import wiki_bp
 
 
 app = Flask(__name__)
+
+app.register_blueprint(wiki_bp, url_prefix='/wiki')
 
 
 @app.route('/github/webhook/2d57d74edc833bc67cdfe25d7ba5fc43', methods=['POST'])
@@ -27,6 +31,26 @@ def webhook():
 def plural(s, count=None):
     # Would be nice to use inflect here, but it has a bug with all-caps input.
     return s if count == 1 else s + 's'
+
+
+def add_simple(*args, **kw):
+    need_online = kw.pop('online', True)
+    need_news = kw.pop('news', True)
+    need_gallery = kw.pop('gallery', False)
+    nav = Nav(*args, **kw)
+
+    def func(ref=nav.ref, pages=nav.registry):
+        kw = {'current': ref, 'pages': pages}
+        if need_news:
+            kw['news'] = news()
+        if need_online:
+            kw['online'] = online()
+        if need_gallery:
+            kw['gallery'] = gallery()
+
+        return render_template(ref + '.html', **kw)
+
+    app.add_url_rule(nav.url, nav.ref, func)
 
 
 def online():
@@ -103,41 +127,9 @@ def gallery_closeup(image):
     return render_template('gallery.html', current='gallery', gallery=image, pages=Nav.registry)
 
 
-class Nav(object):
-    registry = []
-
-    def __init__(self, title, ref=None, url=None, external=False):
-        self.title = title
-        self.ref = ref if ref is not None else title.lower()
-        self.url = url if url is not None else '/' + self.ref
-        self.external = external
-
-        self.registry.append(self)
-
-
-def add_simple(*args, **kw):
-    need_online = kw.pop('online', True)
-    need_news = kw.pop('news', True)
-    need_gallery = kw.pop('gallery', False)
-    nav = Nav(*args, **kw)
-
-    def func(ref=nav.ref, pages=nav.registry):
-        kw = {'current': ref, 'pages': pages}
-        if need_news:
-            kw['news'] = news()
-        if need_online:
-            kw['online'] = online()
-        if need_gallery:
-            kw['gallery'] = gallery()
-
-        return render_template(ref + '.html', **kw)
-
-    app.add_url_rule(nav.url, nav.ref, func)
-
-
 add_simple('Home', 'index', '/')
 Nav('Forum', url=config.FORUM_URL, external=True)
-Nav('Wiki', url=config.WIKI_URL, external=True)
+Nav('Wiki', ref='wiki.wiki', url='/wiki')
 add_simple('Gallery', online=False, news=False, gallery=True)
 add_simple('IRC')
 add_simple('Project')
