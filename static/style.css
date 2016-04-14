@@ -159,6 +159,8 @@ ul {
     justify-content: space-around;
     align-content: space-around;
     align-items: center;
+
+    border-width: 0;
 }
 
 .gallery-img {
