@@ -19,7 +19,7 @@ app.register_blueprint(wiki_bp, url_prefix='/wiki')
 def webhook():
     data = request.data
     expected = request.headers['X-Hub-Signature']
-    received = hmac.HMAC(config.WEBHOOK_TOKEN, data, hashlib.sha1).hexdigest()
+    received = 'sha1=' + hmac.HMAC(config.WEBHOOK_TOKEN, data, hashlib.sha1).hexdigest()
     if received != expected:
         return Response(status=403)
 
