@@ -138,4 +138,4 @@ add_simple('Donate')
 
 
 if __name__ == '__main__':
-    app.run(debug=config.DEBUG)
+    app.run(debug=config.DEBUG, use_reloader=True)
