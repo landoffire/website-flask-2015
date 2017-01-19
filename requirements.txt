@@ -1,0 +1,6 @@
+flask >= 0.10.1
+watchdog >= 0.8.3
+# Wiki
+commonmark >= 0.6.3
+# Forum
+#flask-dance
