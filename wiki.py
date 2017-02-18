@@ -50,7 +50,10 @@ def read_wiki_page(path):
     elif os.path.isdir(full_path):
         files = os.listdir(full_path)
 
-        lines = ['<h1>{}</h1>'.format(fn2title(path) or 'Home')]
+        tmpl = '<h1>{}</h1>\n{}'
+        title = fn2title(path) or 'Home'
+
+        lines = []
         for f in files:
             if f.startswith('.'):
                 continue
@@ -63,7 +66,7 @@ def read_wiki_page(path):
 
             lines.append('<a href="{}">{}</a>'.format(url_for('.wiki', wiki_path=wiki_path), fn2title(f)))
 
-        return '\n'.join(lines)
+        return tmpl.format(title, '<br>\n'.join(lines))
     else:
         abort(404)
 
