@@ -59,8 +59,8 @@ def online():
     if config.DEBUG:
         raw_players = ['KeeKee (GM)', 'Pihro (GM)      ', 'LOFBot   ', 'Pyndragon', 'Ozthokk']
     else:
-        with open(config.ONLINE_LIST_PATH) as fl:
-            raw_players = unicode(fl.read(), 'utf-8').splitlines()[4:-2]
+        with open(config.ONLINE_LIST_PATH, 'rb') as fl:
+            raw_players = fl.read().decode('utf-8').splitlines()[4:-2]
 
     count = len(raw_players)
 
@@ -90,8 +90,8 @@ def online():
 
 
 def news():
-    with open('news.txt' if config.DEBUG else config.NEWS_PATH) as fl:
-        paragraphs = unicode(fl.read(), 'utf-8').split('\n\n')
+    with open('news.txt' if config.DEBUG else config.NEWS_PATH, 'rb') as fl:
+        paragraphs = fl.read().decode('utf-8').split('\n\n')
 
     output = []
     lines_remaining = 25
@@ -105,7 +105,7 @@ def news():
         ident = lines[0][0]
         if ident == config.F_LIST:
             parsed = ['list', lines[0][1], [L[1][2:] for L in lines[1:]]]
-        elif ident == config.F_AUTHOR and lines[0][1].startswith(u'\u2014'):
+        elif ident == config.F_AUTHOR and lines[0][1].startswith('\u2014'):
             # Strip off leading em-dash and whitespace
             parsed = ['author', lines[0][1][1:].rstrip()]
         else:

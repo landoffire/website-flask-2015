@@ -1,7 +1,7 @@
 import re
 import os
 
-import CommonMark as commonmark
+import commonmark
 from flask import Blueprint, Markup, abort, render_template, url_for
 
 from nav import Nav
@@ -70,7 +70,7 @@ def read_wiki_page(path):
     else:
         abort(404)
 
-    with open(full_path) as fl:
+    with open(full_path, 'rb') as fl:
         return commonmark.commonmark(fl.read().decode('utf-8'))
 
 
