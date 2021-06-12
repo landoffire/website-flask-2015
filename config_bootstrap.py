@@ -2,11 +2,11 @@ import sys
 
 
 DEBUG = '--debug' in sys.argv
-ONLINE_LIST_PATH = '/var/www/online.txt'
-NEWS_PATH = '/var/www/updates/news.txt'
-GALLERY_DIR = '/var/www/static/gallery'
+ONLINE_LIST_PATH = './static/online.txt'
+NEWS_PATH = './static/news.txt'
+GALLERY_DIR = './static/gallery'
 
-WIKI_URL ='http://wiki.landoffire.org'
+DISCORD_URL ='https://discord.gg/AHsEpZB'
 FORUM_URL = 'http://forum.landoffire.org'
 
 F_NORMAL = '0'

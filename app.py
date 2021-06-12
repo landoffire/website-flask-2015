@@ -36,8 +36,8 @@ def plural(s, count=None):
 
 
 def add_simple(*args, **kw):
-    need_online = kw.pop('online', True)
-    need_news = kw.pop('news', True)
+    need_online = kw.pop('online', False)
+    need_news = kw.pop('news', False)
     need_gallery = kw.pop('gallery', False)
     nav = Nav(*args, **kw)
 
@@ -131,11 +131,18 @@ def gallery_closeup(image):
     return render_template('gallery.html', current='gallery', gallery=image, pages=Nav.registry)
 
 
+@app.url_build_error_handlers.append
+def check_for_nav_url(error, endpoint, values):
+    if endpoint in Nav.reg_dict:
+        return Nav.reg_dict[endpoint].url
+    raise
+
+
 add_simple('Home', 'index', '/')
-Nav('Forum', url=config.FORUM_URL, external=True)
+#Nav('Forum', url=config.FORUM_URL, external=True)
 Nav('Wiki', ref='wiki.wiki', url='/wiki')
 add_simple('Gallery', online=False, news=False, gallery=True)
-add_simple('IRC')
+Nav('Discord', url=config.DISCORD_URL, external=True)
 add_simple('Project')
 add_simple('Team')
 add_simple('Donate')
