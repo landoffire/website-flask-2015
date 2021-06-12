@@ -1,5 +1,6 @@
 flask ~= 2.0.1
 watchdog ~= 2.1.2
+gunicorn ~= 20.1.0
 # Wiki
 commonmark ~= 0.9.1
 # TODO: Forum
