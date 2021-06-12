@@ -14,8 +14,6 @@ F_TITLE = '1'
 F_AUTHOR = '3'
 F_LIST = '9'
 
-WEBHOOK_TOKEN = b'abc123'
-
 try:
     from config import *
 except ImportError:

@@ -17,18 +17,6 @@ app = Flask(__name__)
 app.register_blueprint(wiki_bp, url_prefix='/wiki')
 
 
-@app.route('/github/webhook/2d57d74edc833bc67cdfe25d7ba5fc43', methods=['POST'])
-def webhook():
-    data = request.data
-    expected = request.headers['X-Hub-Signature']
-    received = 'sha1=' + hmac.HMAC(config.WEBHOOK_TOKEN, data, hashlib.sha1).hexdigest()
-    if received != expected:
-        return Response(status=403)
-
-    subprocess.call(['git', 'pull'])
-    return Response(status=200)
-
-
 @app.template_filter('plural')
 def plural(s, count=None):
     # Would be nice to use inflect here, but it has a bug with all-caps input.
