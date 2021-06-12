@@ -31,14 +31,15 @@
             </main>
 
             {%- block sidebar %}
+            {%- if news %}
             <div class="news sidebar">
                 <h2>Game News</h2>
                 {%- for section in news %}
                 {# We intentionally do not display title elements! #}
                 {%- if section[0] == 'normal' %}
-                    <p class="quote">{{ section[1] }}</p>
+                <p class="quote">{{ section[1] }}</p>
                 {%- elif section[0] == 'author' %}
-                    <p class="author">{{ section[1] }}</p>
+                <p class="author">{{ section[1] }}</p>
                 {%- elif section[0] == 'list' %}
                 <h3>{{ section[1] }}</h3>
                 <ul>
@@ -49,7 +50,9 @@
                 {%- endif %}
                 {%- endfor %}
             </div>
+            {%- endif %}
 
+            {%- if online %}
             <div class="online sidebar">
                 {%- if online.count %}
                 <h2>Who's Online ({{online.count}} total):</h2>
@@ -93,6 +96,7 @@
                 {%- endif %}
                 <iframe class="discord" src="https://discordapp.com/widget?id=195729655532093440&theme=dark" allowtransparency="true" frameborder="0"></iframe>
             </div>
+            {%- endif %}
             {%- endblock %}
         </div>
         <footer>

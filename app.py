@@ -96,6 +96,8 @@ def news():
     output = []
     lines_remaining = 25
     for p in paragraphs:
+        if not p:
+            continue
         if lines_remaining <= 0:
             break
 

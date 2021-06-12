@@ -80,6 +80,8 @@ def wiki(wiki_path=''):
     wiki_path = wiki_path.strip('/')
 
     page = read_wiki_page(wiki_path)
+    if not page:
+        abort(404)
 
     title_match = TITLE_RE.search(page)
     title = title_match.group(1) if title_match else None
